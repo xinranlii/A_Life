@@ -1,0 +1,67 @@
+<mujoco>
+    <option gravity="0 0 -9.81"/>
+    <worldbody>
+        <light diffuse=".5 .5 .5" pos="0 0 3" dir="0 0 -1"/>
+        <geom type="plane" size="5 5 0.1" rgba=".9 .9 .9 1"/>
+        <body name="main" pos="0 0 0.5">
+            <joint type="free"/>
+            <geom type="sphere" size="0.2 0.2" rgba="0.486 0.917 0.97 0.75"/>  <!-- Changed shape to cylinder for spider body -->
+            <site name="marker" pos="0 0 0" size="0.05"/>
+            
+            <!-- Define four spider legs -->
+            <!-- red -->
+            <body name="red-leg-upper" pos="0.4 0 0">
+                <joint name="red-upper-joint" pos="-0.2 0 0" type="hinge" axis="0 1 0" range="-15 0"/>
+                <geom type="cylinder" size="0.05 0.2" rgba="1 0 0 1" euler="0 90 0"/>
+                <body name="red-leg-lower" pos="0.2 0 -0.2">
+                    <joint name="red-lower-joint" pos="0 0 0.2" type="hinge" axis="0 1 0" range="0 45"/>
+                    <geom type="cylinder" size="0.04 0.2" pos="0 0 0" rgba="0.486 0.917 0.97 0.75"/>
+                </body>
+            </body>
+            
+            <!-- green -->
+            <body name="green-leg-upper" pos="0 0.4 0">
+                <joint name="green-upper-joint" pos="0 -0.2 0" type="hinge" axis="1 0 0" range="0 15"/>
+                <geom type="cylinder" size="0.05 0.2" rgba="0 1 0 1" euler="90 0 0"/>
+                <body name="green-leg-lower" pos="0 0.2 -0.2">
+                    <joint name="green-lower-joint" pos="0 0 0.2" type="hinge" axis="1 0 0" range="-45 0"/>
+                    <geom type="cylinder" size="0.04 0.2" pos="0 0 0" rgba="0.486 0.917 0.97 0.75"/>
+                </body>
+            </body>
+            
+            <!-- blue -->
+            <body name="blue-leg-upper" pos="-0.4 0 0">
+                <joint name="blue-upper-joint" pos="0.2 0 0" type="hinge" axis="0 1 0" range="0 15"/>
+                <geom type="cylinder" size="0.05 0.2" rgba="0 0 1 1" euler="0 -90 0"/>
+                <body name="blue-leg-lower" pos="-0.2 0 -0.2">
+                    <joint name="blue-lower-joint" pos="0 0 0.2" type="hinge" axis="0 1 0" range="-45 0"/>
+                    <geom type="cylinder" size="0.04 0.2" pos="0 0 0" rgba="0.486 0.917 0.97 0.75"/>
+                </body>
+            </body>
+            
+            <!-- grey -->
+            <body name="grey-leg-upper" pos="0 -0.4 0">
+                <joint name="grey-upper-joint" pos="0 0.2 0" type="hinge" axis="1 0 0" range="-15 0"/>
+                <geom type="cylinder" size="0.05 0.2" rgba="1 1 1 1" euler="-90 0 0"/>
+                <body name="grey-leg-lower" pos="0 -0.2 -0.2">
+                    <joint name="grey-lower-joint" pos="0 0 0.2" type="hinge" axis="1 0 0" range="-0 45"/>
+                    <geom type="cylinder" size="0.04 0.2" pos="0 0 0" rgba="0.486 0.917 0.97 0.75"/>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+    <sensor>
+        <framepos objtype="site" objname="marker"/>
+    </sensor>
+    <actuator>
+        <motor name="red-upper-motor" joint="red-upper-joint" />
+        <motor name="red-lower-motor" joint="red-lower-joint" />
+        <motor name="green-upper-motor" joint="green-upper-joint" />
+        <motor name="green-lower-motor" joint="green-lower-joint" />
+        <motor name="blue-upper-motor" joint="blue-upper-joint" />
+        <motor name="blue-lower-motor" joint="blue-lower-joint" />
+        <motor name="grey-upper-motor" joint="grey-upper-joint" />
+        <motor name="grey-lower-motor" joint="grey-lower-joint" />
+    </actuator>
+</mujoco>
+
